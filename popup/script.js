@@ -11,7 +11,7 @@ function getDt() {
 {
     const btn = document.querySelector('#btn');
     btn.addEventListener('click', () => {
-        browser.tabs.query({currentWindow: true}, (tabs) =>{
+        browser.tabs.query({currentWindow: true}).then((tabs) =>{
             let names = [];
             const dir = `images-${getDt()}/`;
             tabs.forEach(e => {
