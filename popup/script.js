@@ -10,7 +10,9 @@ function getDt() {
 }
 {
     const btn = document.querySelector('#btn');
+    const inClose = document.querySelector('#close');
     btn.addEventListener('click', () => {
+        const close = inClose.checked;
         browser.tabs.query({currentWindow: true}).then((tabs) =>{
             let names = [];
             const dir = `images-${getDt()}/`;
@@ -33,7 +35,9 @@ function getDt() {
                         url: e.url,
                         filename: filePath
                     }).then((resp) => {
-                        console.log(resp);
+                        if (close) {
+                            browser.tabs.remove(e.id)
+                        }
                     });
                 }
             });
